@@ -5,7 +5,10 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,11 +17,10 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- *
- * @author rodolpho.sotolani
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_ESTOQUE_VACINA")
 public class EstoqueVacina implements Serializable {
@@ -53,10 +55,5 @@ public class EstoqueVacina implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATA_CADASTRO", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date dataCadastro;
-
-    @Override
-    public String toString() {
-        return "Vacina " + loteVacina.getVacina() + " - Qtde Atual " + quantidadeAtual;
-    }
 
 }

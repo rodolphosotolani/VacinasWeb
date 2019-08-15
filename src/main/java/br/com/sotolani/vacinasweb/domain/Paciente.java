@@ -5,20 +5,22 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- *
- * @author Rodolpho
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_PACIENTE")
-@PrimaryKeyJoinColumn(name = "idPaciente")
+//@PrimaryKeyJoinColumn(name = "idPaciente")
 public class Paciente extends Pessoa implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)

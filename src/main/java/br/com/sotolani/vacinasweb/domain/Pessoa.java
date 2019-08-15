@@ -6,7 +6,9 @@
 package br.com.sotolani.vacinasweb.domain;
 
 import br.com.sotolani.vacinasweb.enums.SexoEnum;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,10 +16,9 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Rodolpho
- */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_PESSOA")
 @Inheritance(strategy = InheritanceType.JOINED)

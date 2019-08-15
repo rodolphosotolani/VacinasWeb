@@ -5,7 +5,10 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,12 +16,12 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Diego
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table
+@Table(name = "TB_EMPRESA")
 public class Empresa implements Serializable {
 
     @Id

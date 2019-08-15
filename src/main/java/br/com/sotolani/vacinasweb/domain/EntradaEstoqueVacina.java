@@ -5,7 +5,10 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,10 +17,10 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Rodolpho
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table
 @Entity(name = "TB_ENTRADA_ESTOQUE_VACINA")
 public class EntradaEstoqueVacina implements Serializable {

@@ -7,7 +7,10 @@ package br.com.sotolani.vacinasweb.domain;
 
 import br.com.sotolani.vacinasweb.enums.MotivoSaidaEstoqueEnum;
 import br.com.sotolani.vacinasweb.enums.TipoSaidaEstoqueEnum;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,10 +18,10 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Rodolpho
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_SAIDA_ESTOQUE_VACINA")
 public class SaidaEstoqueVacina implements Serializable {

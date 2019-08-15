@@ -5,19 +5,22 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Diego
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "CIDADE")
+@Table(name = "TB_CIDADE")
 public class Cidade implements Serializable {
 
     @Id

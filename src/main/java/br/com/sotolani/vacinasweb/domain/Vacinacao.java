@@ -5,7 +5,10 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,10 +16,10 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Rodolpho
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TD_VACINACAO")
 public class Vacinacao implements Serializable {
@@ -44,7 +47,7 @@ public class Vacinacao implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATA_REGISTRO", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date dataHoraRegistro;
+    private Date dataRegistro;
 
     @ManyToOne
     @JoinColumn(name = "ID_SOLICITANTE")
@@ -52,7 +55,7 @@ public class Vacinacao implements Serializable {
 
     @Override
     public String toString() {
-        return "Vacina " + loteVacina.getVacina().getNome() + " - Paciente " + paciente + " - Data " + dataHoraVacinacao;
+        return "Vacina " + loteVacina.getVacina().getNome() + " - Paciente " + paciente + " - Data " + dataVacinacao;
     }
 
 }
