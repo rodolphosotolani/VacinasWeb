@@ -7,18 +7,11 @@ package br.com.sotolani.vacinasweb.domain;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 /**
  *
@@ -34,12 +27,9 @@ public class Usuario implements Serializable {
     @Column(name = "ID", unique = true, nullable = false)
     private Integer idUsuario;
 
-    @ManyToOne()
-    @JoinColumn(name = "idFuncionario")
+    @ManyToOne
+    @JoinColumn(name = "ID_FUNCIONARIO")
     private Funcionario funcionario;
-
-    @ManyToMany
-    private List<Perfil> listaPerfis;
 
     @Column(name = "LOGIN", length = 50, nullable = false, unique = true)
     private String login;
@@ -52,6 +42,9 @@ public class Usuario implements Serializable {
 
     @Column(name = "ADMINISTRADOR")
     private Boolean administrador;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<UsuarioPerfil> usuarioPerfilList;
 
     @Override
     public String toString() {

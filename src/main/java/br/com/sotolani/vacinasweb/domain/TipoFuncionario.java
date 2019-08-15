@@ -22,7 +22,7 @@ public class TipoFuncionario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(unique = true, nullable = false)
+    @Column(name = "ID", unique = true, nullable = false)
     private Integer idTipoFuncionario;
 
     @Column(name = "NOME", length = 50, nullable = false)

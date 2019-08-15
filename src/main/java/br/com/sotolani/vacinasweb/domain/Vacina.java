@@ -26,12 +26,6 @@ public class Vacina implements Serializable {
     @Column(name = "ID", unique = true, nullable = false)
     private Integer idVacina;
 
-    @ManyToMany(mappedBy = "listaVacinasFornecedor")
-    private List<Empresa> listaFornecedor;
-
-    @ManyToMany(mappedBy = "listaVacinasFabricante")
-    private List<Empresa> listaFabricante;
-
     @Column(name = "NOME", length = 100, nullable = false)
     private String nome;
 
@@ -46,6 +40,12 @@ public class Vacina implements Serializable {
 
     @Column(name = "QUANTIDADE")
     private Integer quantidadeMinima;
+
+    @OneToMany(mappedBy = "vacina")
+    private List<FabricanteVacina> fabricanteVacinaList;
+
+    @OneToMany(mappedBy = "vacina")
+    private List<FornecedorVacina> fornecedorVacinaList;
 
     @Override
     public String toString() {

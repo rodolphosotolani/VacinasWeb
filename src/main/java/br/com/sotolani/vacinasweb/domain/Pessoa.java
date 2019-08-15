@@ -5,7 +5,7 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
-import br.com.sotolani.vacinasweb.enums.TipoSexoEnum;
+import br.com.sotolani.vacinasweb.enums.SexoEnum;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -29,7 +29,7 @@ public class Pessoa implements Serializable {
     private Integer id;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "idEndereco")
+    @JoinColumn(name = "ID_ENDERECO")
     private Endereco endereco;
 
     @Temporal(TemporalType.DATE)
@@ -38,7 +38,7 @@ public class Pessoa implements Serializable {
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "SEXO", length = 10)
-    private TipoSexoEnum sexo;
+    private SexoEnum sexo;
 
     @Column(name = "NOME", length = 100, nullable = false)
     private String nome;

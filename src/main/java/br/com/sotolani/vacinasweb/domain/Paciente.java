@@ -7,14 +7,9 @@ package br.com.sotolani.vacinasweb.domain;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -31,12 +26,18 @@ public class Paciente extends Pessoa implements Serializable {
     private Date dataCadastro;
 
 //    @Column(name = "NOME_MAE", length = 50)
-    private Paciente mae;
+@ManyToOne
+@JoinColumn(name = "ID_MAE")
+private Paciente mae;
 
 //    @Column(name = "NOME_PAI", length = 50)
-    private Paciente pai;
+@ManyToOne
+@JoinColumn(name = "ID_PAI")
+private Paciente pai;
 
 //    @Column(name = "NOME_RESPONSAVEL", length = 50)
-    private Paciente responsavel;
+@ManyToOne
+@JoinColumn(name = "ID_RESPONSAVEL")
+private Paciente responsavel;
 
 }

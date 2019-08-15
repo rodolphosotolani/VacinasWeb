@@ -7,11 +7,9 @@ package br.com.sotolani.vacinasweb.domain;
 
 import lombok.Data;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -29,14 +27,14 @@ public class Permissao implements Serializable {
     @Column(name = "ID", unique = true, nullable = false)
     private Integer idPermissao;
 
-    @ManyToMany(mappedBy = "listaPermissoes")
-    private List<Perfil> listaPerfis;
-
     @Column(name = "NOME", length = 50)
     private String nome;
 
     @Column(name = "DESCRICAO", length = 100)
     private String descricao;
+
+    @OneToMany(mappedBy = "permissao")
+    private List<PerfilPermissao> perfilPermissaoList;
 
     @Override
     public String toString() {

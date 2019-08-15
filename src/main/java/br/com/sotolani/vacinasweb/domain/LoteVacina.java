@@ -27,12 +27,16 @@ public class LoteVacina implements Serializable {
     private Integer idLoteVacina;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idVacina", nullable = false)
+    @JoinColumn(name = "ID_VACINA", nullable = false)
     private Vacina vacina;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idFabricante", nullable = false)
-    private Empresa fabricante;
+    @JoinColumn(name = "ID_FABRICANTE", nullable = false)
+    private FabricanteVacina fabricante;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "ID_ESTOQUE_VACINA", nullable = false)
+    private EstoqueVacina estoqueVacina;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "DATA_FABRICACAO", nullable = false)

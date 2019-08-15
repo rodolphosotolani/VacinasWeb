@@ -26,7 +26,7 @@ public class Cidade implements Serializable {
     private Integer idCidade;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idEstado", nullable = false)
+    @JoinColumn(name = "ID_ESTADO", nullable = false)
     private Estado estado;
 
     @Column(name = "NOME", length = 50, nullable = false)

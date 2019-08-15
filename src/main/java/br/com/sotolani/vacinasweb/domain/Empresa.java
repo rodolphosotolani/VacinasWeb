@@ -27,12 +27,8 @@ public class Empresa implements Serializable {
     private Integer idEmpresa;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "idEndereco")
+    @JoinColumn(name = "ID_ENDERECO")
     private Endereco endereco;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idContato")
-    private Contato contato;
 
     @Column(name = "NOME_FANTASIA", length = 100, nullable = false)
     private String nomeFantasia;
@@ -50,19 +46,22 @@ public class Empresa implements Serializable {
     private String email;
 
     @Column(name = "FORNECEDOR")
-    private Boolean fornecedor;
+    private boolean fornecedor;
 
     @Column(name = "FABRICANTE")
-    private Boolean fabricante;
+    private boolean fabricante;
 
     @Column(name = "PARCEIRA")
-    private Boolean parceira;
+    private boolean parceira;
 
-    @ManyToMany
-    private List<Vacina> listaVacinasFornecedor;
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private List<Contato> contatoList;
 
-    @ManyToMany
-    private List<Vacina> listaVacinasFabricante;
+    @OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL)
+    private List<FornecedorVacina> fornecedorVacinaList;
+
+    @OneToMany(mappedBy = "fabricante", cascade = CascadeType.ALL)
+    private List<FabricanteVacina> fabricanteVacinaList;
 
     @Override
     public String toString() {

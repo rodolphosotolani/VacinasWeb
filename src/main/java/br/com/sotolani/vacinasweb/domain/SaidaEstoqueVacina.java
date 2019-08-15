@@ -6,7 +6,7 @@
 package br.com.sotolani.vacinasweb.domain;
 
 import br.com.sotolani.vacinasweb.enums.MotivoSaidaEstoqueEnum;
-import br.com.sotolani.vacinasweb.enums.TipoSaidaEnum;
+import br.com.sotolani.vacinasweb.enums.TipoSaidaEstoqueEnum;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,15 +25,15 @@ public class SaidaEstoqueVacina implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(unique = true, nullable = false)
+    @Column(name = "ID", unique = true, nullable = false)
     private Integer idSaidaEstoque;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idEstoqueVacina", nullable = false, updatable = false)
+    @JoinColumn(name = "ID_ESTOQUE_VACINA", nullable = false, updatable = false)
     private EstoqueVacina estoqueVacina;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idFuncionario", nullable = false, updatable = false)
+    @JoinColumn(name = "ID_FUNCIONARIO", nullable = false, updatable = false)
     private Funcionario responsavel;
 
     @Temporal(TemporalType.DATE)
@@ -44,8 +44,8 @@ public class SaidaEstoqueVacina implements Serializable {
     private Integer quantidade;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "TIPO_SAIDA", length = 20, nullable = false)
-    private TipoSaidaEnum tipoSaida;
+    @Column(name = "TIPO_SAIDA_ESTOQUE", length = 20, nullable = false)
+    private TipoSaidaEstoqueEnum tipoSaida;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "MOTIVO_SAIDA", length = 20)

@@ -26,12 +26,6 @@ public class Perfil implements Serializable {
     @Column(name = "ID", unique = true, nullable = false)
     private Integer idPerfil;
 
-    @ManyToMany(mappedBy = "listaPerfis")
-    private List<Usuario> listaUsuarios;
-
-    @ManyToMany
-    private List<Permissao> listaPermissoes;
-
     @Column(name = "NOME", length = 50)
     private String nome;
 
@@ -40,6 +34,12 @@ public class Perfil implements Serializable {
 
     @Column(name = "ATIVO")
     private Boolean ativo;
+
+    @OneToMany(mappedBy = "perfil")
+    private List<UsuarioPerfil> usuarioPerfilList;
+
+    @OneToMany(mappedBy = "perfil")
+    private List<PerfilPermissao> perfilPermissaoList;
 
     @Override
     public String toString() {

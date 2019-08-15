@@ -9,6 +9,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -27,7 +28,7 @@ public class EntradaEstoqueVacina implements Serializable {
     private Integer idEntradaEstoque;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idEstoqueVacina", nullable = false, updatable = false)
+    @JoinColumn(name = "ID_ESTOQUE_VACINA", nullable = false, updatable = false)
     private EstoqueVacina estoqueVacina;
 
     @Temporal(TemporalType.DATE)
@@ -49,19 +50,23 @@ public class EntradaEstoqueVacina implements Serializable {
     private Integer quantidade;
 
     @Column(name = "VALOR_TOTAL")
-    private Double valorTotal;
+    private BigDecimal valorTotal;
 
     @Column(name = "VALOR_UNITARIO")
-    private Double valorUnitario;
+    private BigDecimal valorUnitario;
 
     @Column(name = "VALOR_DESCONTO")
-    private Double valorDesconto;
+    private BigDecimal valorDesconto;
 
     @Column(name = "OBSERVACAO", length = 100)
     private String observacao;
 
+    @ManyToOne()
+    @JoinColumn(name = "ID_FORNECEDOR")
+    private FornecedorVacina fornecedorVacina;
+
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idFuncionario", updatable = false, nullable = false)
+    @JoinColumn(name = "ID_FUNCIONARIO", updatable = false, nullable = false)
     private Funcionario responsavel;
 
     @Override

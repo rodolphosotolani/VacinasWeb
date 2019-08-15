@@ -7,17 +7,10 @@ package br.com.sotolani.vacinasweb.domain;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 /**
  *
@@ -46,7 +39,7 @@ public class Endereco implements Serializable {
     private String complemento;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bairro_id")
+    @JoinColumn(name = "ID_BAIRRO")
     private Bairro bairro;
 
     @Override

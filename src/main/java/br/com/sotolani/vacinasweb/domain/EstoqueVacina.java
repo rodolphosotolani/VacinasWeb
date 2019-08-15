@@ -7,21 +7,12 @@ package br.com.sotolani.vacinasweb.domain;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -37,12 +28,8 @@ public class EstoqueVacina implements Serializable {
     @Column(name = "ID", unique = true, nullable = false)
     private Integer idEstoqueVacina;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "idLoteVacina", nullable = false, unique = true)
-    private LoteVacina loteVacina;
-
     @ManyToOne
-    @JoinColumn(name = "idFornecedor")
+    @JoinColumn(name = "ID_FORNECEDOR")
     private Empresa fornecedor;
 
     @Column(name = "QUANTIDADE_ENTRADA")
@@ -53,6 +40,9 @@ public class EstoqueVacina implements Serializable {
 
     @Column(name = "QUANTIDADE_ATUAL")
     private Integer quantidadeAtual;
+
+    @OneToMany(mappedBy = "estoqueVacina")
+    private List<LoteVacina> loteVacinaList;
 
     @OneToMany(mappedBy = "estoqueVacina")
     private List<EntradaEstoqueVacina> listaEntradasEstoque;
