@@ -16,6 +16,6 @@ public class UsuarioController {
 
     @RequestMapping("/usuarios")
     public List<UsuarioDTO> getAll() {
-        return this.service.findAll();
+        return UsuarioDTO.converter(this.service.findAll());
     }
 }
