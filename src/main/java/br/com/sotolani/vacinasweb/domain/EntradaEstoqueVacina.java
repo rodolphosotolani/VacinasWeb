@@ -5,29 +5,33 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Rodolpho
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table
 @Entity(name = "TB_ENTRADA_ESTOQUE_VACINA")
 public class EntradaEstoqueVacina implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idEntradaEstoque;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "idEstoqueVacina", nullable = false, updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "ID_ESTOQUE_VACINA", nullable = false)
     private EstoqueVacina estoqueVacina;
 
     @Temporal(TemporalType.DATE)
@@ -39,7 +43,8 @@ public class EntradaEstoqueVacina implements Serializable {
     private Date dataPedido;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATA_CADASTRO", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "DATA_CADASTRO", nullable = false,
+            updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date dataCadastro;
 
     @Column(name = "NUMERO_NOTA_FISCAL", length = 20)
@@ -49,24 +54,23 @@ public class EntradaEstoqueVacina implements Serializable {
     private Integer quantidade;
 
     @Column(name = "VALOR_TOTAL")
-    private Double valorTotal;
+    private BigDecimal valorTotal;
 
     @Column(name = "VALOR_UNITARIO")
-    private Double valorUnitario;
+    private BigDecimal valorUnitario;
 
     @Column(name = "VALOR_DESCONTO")
-    private Double valorDesconto;
+    private BigDecimal valorDesconto;
 
     @Column(name = "OBSERVACAO", length = 100)
     private String observacao;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "idFuncionario", updatable = false, nullable = false)
-    private Funcionario responsavel;
+    @ManyToOne
+    @JoinColumn(name = "ID_FORNECEDOR")
+    private FornecedorVacina fornecedorVacina;
 
-    @Override
-    public String toString() {
-        return "Data Entrada " + dataEntrada + " - Quantidade " + quantidade;
-    }
+    @ManyToOne
+    @JoinColumn(name = "ID_FUNCIONARIO", updatable = false, nullable = false)
+    private Funcionario responsavel;
 
 }

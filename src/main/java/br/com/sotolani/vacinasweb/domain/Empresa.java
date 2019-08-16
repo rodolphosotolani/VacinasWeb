@@ -5,7 +5,10 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,26 +16,22 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Diego
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table
+@Table(name = "TB_EMPRESA")
 public class Empresa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idEmpresa;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "idEndereco")
+    @JoinColumn(name = "ID_ENDERECO")
     private Endereco endereco;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idContato")
-    private Contato contato;
 
     @Column(name = "NOME_FANTASIA", length = 100, nullable = false)
     private String nomeFantasia;
@@ -50,23 +49,21 @@ public class Empresa implements Serializable {
     private String email;
 
     @Column(name = "FORNECEDOR")
-    private Boolean fornecedor;
+    private boolean fornecedor;
 
     @Column(name = "FABRICANTE")
-    private Boolean fabricante;
+    private boolean fabricante;
 
     @Column(name = "PARCEIRA")
-    private Boolean parceira;
+    private boolean parceira;
 
-    @ManyToMany
-    private List<Vacina> listaVacinasFornecedor;
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private List<Contato> contatoList;
 
-    @ManyToMany
-    private List<Vacina> listaVacinasFabricante;
+    @OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL)
+    private List<FornecedorVacina> fornecedorVacinaList;
 
-    @Override
-    public String toString() {
-        return nomeFantasia + " - " + razaoSocial + " - " + CNPJ;
-    }
+    @OneToMany(mappedBy = "fabricante", cascade = CascadeType.ALL)
+    private List<FabricanteVacina> fabricanteVacinaList;
 
 }

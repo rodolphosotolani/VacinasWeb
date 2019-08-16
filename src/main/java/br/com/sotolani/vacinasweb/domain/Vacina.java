@@ -5,7 +5,10 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,10 +16,10 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Rodolpho
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_VACINA")
 public class Vacina implements Serializable {
@@ -25,12 +28,6 @@ public class Vacina implements Serializable {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
     private Integer idVacina;
-
-    @ManyToMany(mappedBy = "listaVacinasFornecedor")
-    private List<Empresa> listaFornecedor;
-
-    @ManyToMany(mappedBy = "listaVacinasFabricante")
-    private List<Empresa> listaFabricante;
 
     @Column(name = "NOME", length = 100, nullable = false)
     private String nome;
@@ -46,6 +43,12 @@ public class Vacina implements Serializable {
 
     @Column(name = "QUANTIDADE")
     private Integer quantidadeMinima;
+
+    @OneToMany(mappedBy = "vacina")
+    private List<FabricanteVacina> fabricanteVacinaList;
+
+    @OneToMany(mappedBy = "vacina")
+    private List<FornecedorVacina> fornecedorVacinaList;
 
     @Override
     public String toString() {

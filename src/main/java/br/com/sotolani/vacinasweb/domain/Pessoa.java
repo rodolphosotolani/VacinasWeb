@@ -5,8 +5,10 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
-import br.com.sotolani.vacinasweb.enums.TipoSexoEnum;
+import br.com.sotolani.vacinasweb.enums.SexoEnum;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,10 +16,9 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Rodolpho
- */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_PESSOA")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -25,11 +26,11 @@ public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(unique = true, nullable = false)
+    @Column(name = "ID")
     private Integer id;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "idEndereco")
+    @JoinColumn(name = "ID_ENDERECO")
     private Endereco endereco;
 
     @Temporal(TemporalType.DATE)
@@ -38,7 +39,7 @@ public class Pessoa implements Serializable {
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "SEXO", length = 10)
-    private TipoSexoEnum sexo;
+    private SexoEnum sexo;
 
     @Column(name = "NOME", length = 100, nullable = false)
     private String nome;
@@ -58,8 +59,4 @@ public class Pessoa implements Serializable {
     @Column(name = "ATIVO")
     private Boolean ativo = Boolean.TRUE;
 
-    @Override
-    public String toString() {
-        return nome;
-    }
 }

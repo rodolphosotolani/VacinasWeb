@@ -5,32 +5,27 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-/**
- *
- * @author Diego
- */
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_ENDERECO")
 public class Endereco implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idEndereco;
 
     @Column(name = "NOME", length = 100, nullable = false)
@@ -46,12 +41,7 @@ public class Endereco implements Serializable {
     private String complemento;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bairro_id")
+    @JoinColumn(name = "ID_BAIRRO")
     private Bairro bairro;
-
-    @Override
-    public String toString() {
-        return nome + ", Nº " + numero;
-    }
 
 }

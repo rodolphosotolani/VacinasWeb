@@ -5,28 +5,31 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Diego
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "CIDADE")
+@Table(name = "TB_CIDADE")
 public class Cidade implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idCidade;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idEstado", nullable = false)
+    @JoinColumn(name = "ID_ESTADO", nullable = false)
     private Estado estado;
 
     @Column(name = "NOME", length = 50, nullable = false)
@@ -34,10 +37,5 @@ public class Cidade implements Serializable {
 
     @Column(name = "SIGLA", length = 5)
     private String sigla;
-
-    @Override
-    public String toString() {
-        return nome + " - " + estado.getSigla();
-    }
 
 }

@@ -5,7 +5,10 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,26 +16,30 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Rodolpho
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_LOTE_VACINA")
 public class LoteVacina implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idLoteVacina;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idVacina", nullable = false)
+    @JoinColumn(name = "ID_VACINA", nullable = false)
     private Vacina vacina;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idFabricante", nullable = false)
-    private Empresa fabricante;
+    @JoinColumn(name = "ID_FABRICANTE", nullable = false)
+    private FabricanteVacina fabricante;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "ID_ESTOQUE_VACINA", nullable = false)
+    private EstoqueVacina estoqueVacina;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "DATA_FABRICACAO", nullable = false)
@@ -45,19 +52,15 @@ public class LoteVacina implements Serializable {
     @Column(name = "DESCRICAO", length = 100)
     private String descricao;
 
-    @Column(name = "NUMERO", length = 20, nullable = false, unique = true)
+    @Column(name = "NUMERO", length = 20, nullable = false)
     private String numero;
 
     @Column(name = "ATIVO")
     private boolean ativo;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATA_CADASTRO", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "DATA_CADASTRO", nullable = false,
+            updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date dataCadastro;
-
-    @Override
-    public String toString() {
-        return vacina.getNome() + " - " + numero;
-    }
 
 }

@@ -5,32 +5,29 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- *
- * @author Rodolpho
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_PERMISSAO")
 public class Permissao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID")
     private Integer idPermissao;
-
-    @ManyToMany(mappedBy = "listaPermissoes")
-    private List<Perfil> listaPerfis;
 
     @Column(name = "NOME", length = 50)
     private String nome;
@@ -38,9 +35,7 @@ public class Permissao implements Serializable {
     @Column(name = "DESCRICAO", length = 100)
     private String descricao;
 
-    @Override
-    public String toString() {
-        return nome;
-    }
+    @OneToMany(mappedBy = "permissao")
+    private List<PerfilPermissao> perfilPermissaoList;
 
 }

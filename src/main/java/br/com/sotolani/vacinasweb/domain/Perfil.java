@@ -5,7 +5,10 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,10 +16,10 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * @author Rodolpho
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_PERFIL")
 public class Perfil implements Serializable {
@@ -25,12 +28,6 @@ public class Perfil implements Serializable {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
     private Integer idPerfil;
-
-    @ManyToMany(mappedBy = "listaPerfis")
-    private List<Usuario> listaUsuarios;
-
-    @ManyToMany
-    private List<Permissao> listaPermissoes;
 
     @Column(name = "NOME", length = 50)
     private String nome;
@@ -41,9 +38,10 @@ public class Perfil implements Serializable {
     @Column(name = "ATIVO")
     private Boolean ativo;
 
-    @Override
-    public String toString() {
-        return nome;
-    }
+    @OneToMany(mappedBy = "perfil")
+    private List<UsuarioPerfil> usuarioPerfilList;
+
+    @OneToMany(mappedBy = "perfil")
+    private List<PerfilPermissao> perfilPermissaoList;
 
 }

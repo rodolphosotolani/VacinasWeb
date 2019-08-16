@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum TipoSaidaEnum {
+public enum TipoSaidaEstoqueEnum {
 
     VENDA("Venda", "V"),
     APLICACAO("Aplicação", "A"),

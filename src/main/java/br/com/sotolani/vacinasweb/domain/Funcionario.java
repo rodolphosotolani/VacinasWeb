@@ -5,33 +5,27 @@
  */
 package br.com.sotolani.vacinasweb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-/**
- *
- * @author Rodolpho
- */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_FUNCIONARIO")
-@PrimaryKeyJoinColumn(name = "idFuncionario")
+//@PrimaryKeyJoinColumn(name = "idFuncionario")
 public class Funcionario extends Pessoa implements Serializable {
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idTipoFuncionario", nullable = false)
+    @JoinColumn(name = "ID_TIPO_FUNCIONARIO", nullable = false)
     private TipoFuncionario tipoFuncionario;
 
     @Temporal(TemporalType.DATE)
@@ -47,10 +41,5 @@ public class Funcionario extends Pessoa implements Serializable {
 
     @OneToMany(mappedBy = "funcionario")
     private List<Usuario> listaUsuarios;
-
-    @Override
-    public String toString() {
-        return matricula + " - " + getNome();
-    }
 
 }
