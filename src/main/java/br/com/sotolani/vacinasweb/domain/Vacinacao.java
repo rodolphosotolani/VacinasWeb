@@ -26,7 +26,7 @@ public class Vacinacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID")
     private Integer idVacinacao;
 
     @ManyToOne(optional = false)
@@ -46,16 +46,12 @@ public class Vacinacao implements Serializable {
     private Date dataVacinacao;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATA_REGISTRO", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "DATA_REGISTRO", nullable = false,
+            updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date dataRegistro;
 
     @ManyToOne
     @JoinColumn(name = "ID_SOLICITANTE")
     private Funcionario medicoSolicitante;
-
-    @Override
-    public String toString() {
-        return "Vacina " + loteVacina.getVacina().getNome() + " - Paciente " + paciente + " - Data " + dataVacinacao;
-    }
 
 }

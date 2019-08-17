@@ -26,7 +26,7 @@ public class Permissao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID")
     private Integer idPermissao;
 
     @Column(name = "NOME", length = 50)
@@ -37,10 +37,5 @@ public class Permissao implements Serializable {
 
     @OneToMany(mappedBy = "permissao")
     private List<PerfilPermissao> perfilPermissaoList;
-
-    @Override
-    public String toString() {
-        return nome;
-    }
 
 }

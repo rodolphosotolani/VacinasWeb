@@ -25,7 +25,7 @@ public class Endereco implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idEndereco;
 
     @Column(name = "NOME", length = 100, nullable = false)
@@ -43,10 +43,5 @@ public class Endereco implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_BAIRRO")
     private Bairro bairro;
-
-    @Override
-    public String toString() {
-        return nome + ", Nº " + numero;
-    }
 
 }

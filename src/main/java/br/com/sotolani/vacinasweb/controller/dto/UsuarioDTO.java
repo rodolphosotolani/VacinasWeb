@@ -1,16 +1,15 @@
 package br.com.sotolani.vacinasweb.controller.dto;
 
 import br.com.sotolani.vacinasweb.domain.Usuario;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class UsuarioDTO {
 
     private Integer idUsuario;
@@ -32,11 +31,11 @@ public class UsuarioDTO {
         this.administrador = usuario.isAdministrador();
     }
 
-    public List<UsuarioDTO> converter(List<Usuario> usuarioList) {
+    public static List<UsuarioDTO> converter(List<Usuario> usuarioList) {
         return usuarioList.stream().map(UsuarioDTO::new).collect(Collectors.toList());
     }
 
-    public UsuarioDTO converter(Usuario usuario) {
+    public static UsuarioDTO converter(Usuario usuario) {
         return new UsuarioDTO(usuario);
     }
 }

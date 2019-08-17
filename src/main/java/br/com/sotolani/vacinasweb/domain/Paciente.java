@@ -24,22 +24,20 @@ import java.util.Date;
 public class Paciente extends Pessoa implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATA_CADASTRO", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "DATA_CADASTRO", nullable = false,
+            updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date dataCadastro;
 
-//    @Column(name = "NOME_MAE", length = 50)
-@ManyToOne
-@JoinColumn(name = "ID_MAE")
-private Paciente mae;
+    @ManyToOne
+    @JoinColumn(name = "ID_MAE")
+    private Paciente mae;
 
-//    @Column(name = "NOME_PAI", length = 50)
-@ManyToOne
-@JoinColumn(name = "ID_PAI")
-private Paciente pai;
+    @ManyToOne
+    @JoinColumn(name = "ID_PAI")
+    private Paciente pai;
 
-//    @Column(name = "NOME_RESPONSAVEL", length = 50)
-@ManyToOne
-@JoinColumn(name = "ID_RESPONSAVEL")
-private Paciente responsavel;
+    @ManyToOne
+    @JoinColumn(name = "ID_RESPONSAVEL")
+    private Paciente responsavel;
 
 }

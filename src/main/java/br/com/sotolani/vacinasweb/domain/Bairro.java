@@ -26,7 +26,7 @@ public class Bairro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idBairro;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -39,8 +39,4 @@ public class Bairro implements Serializable {
     @OneToMany(mappedBy = "bairro")
     private List<Endereco> listaEnderecos;
 
-    @Override
-    public String toString() {
-        return nome + " - " + cidade.getNome();
-    }
 }

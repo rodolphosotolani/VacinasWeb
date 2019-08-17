@@ -44,9 +44,4 @@ public class Perfil implements Serializable {
     @OneToMany(mappedBy = "perfil")
     private List<PerfilPermissao> perfilPermissaoList;
 
-    @Override
-    public String toString() {
-        return nome;
-    }
-
 }

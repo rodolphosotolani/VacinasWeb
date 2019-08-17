@@ -27,11 +27,11 @@ public class EntradaEstoqueVacina implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idEntradaEstoque;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ID_ESTOQUE_VACINA", nullable = false, updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "ID_ESTOQUE_VACINA", nullable = false)
     private EstoqueVacina estoqueVacina;
 
     @Temporal(TemporalType.DATE)
@@ -43,7 +43,8 @@ public class EntradaEstoqueVacina implements Serializable {
     private Date dataPedido;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATA_CADASTRO", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "DATA_CADASTRO", nullable = false,
+            updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date dataCadastro;
 
     @Column(name = "NUMERO_NOTA_FISCAL", length = 20)
@@ -64,17 +65,12 @@ public class EntradaEstoqueVacina implements Serializable {
     @Column(name = "OBSERVACAO", length = 100)
     private String observacao;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "ID_FORNECEDOR")
     private FornecedorVacina fornecedorVacina;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "ID_FUNCIONARIO", updatable = false, nullable = false)
     private Funcionario responsavel;
-
-    @Override
-    public String toString() {
-        return "Data Entrada " + dataEntrada + " - Quantidade " + quantidade;
-    }
 
 }

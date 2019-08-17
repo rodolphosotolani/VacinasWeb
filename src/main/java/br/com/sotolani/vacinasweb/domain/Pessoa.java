@@ -26,7 +26,7 @@ public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(unique = true, nullable = false)
+    @Column(name = "ID")
     private Integer id;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -59,8 +59,4 @@ public class Pessoa implements Serializable {
     @Column(name = "ATIVO")
     private Boolean ativo = Boolean.TRUE;
 
-    @Override
-    public String toString() {
-        return nome;
-    }
 }

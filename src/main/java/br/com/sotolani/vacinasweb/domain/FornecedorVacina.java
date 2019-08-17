@@ -16,14 +16,16 @@ import java.io.Serializable;
 @Table(name = "TB_FORNECEDOR_VACINA")
 public class FornecedorVacina implements Serializable {
 
-    @EmbeddedId
-    private FornecedorVacinaPK pk = new FornecedorVacinaPK();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer IdFornecedorVacina;
 
     @ManyToOne
-    @JoinColumn(name = "ID_FORNECEDOR", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_FORNECEDOR", nullable = false)
     private Empresa fornecedor;
 
     @ManyToOne
-    @JoinColumn(name = "ID_VACINA", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_VACINA", nullable = false)
     private Vacina vacina;
 }

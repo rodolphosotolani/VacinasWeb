@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Builder
@@ -13,10 +14,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_USUARIO_PERFIL")
-public class UsuarioPerfil {
+public class UsuarioPerfil implements Serializable {
 
-    @EmbeddedId
-    private UsuarioPerfilPK pk = new UsuarioPerfilPK();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer idUsuarioPerfil;
 
     @ManyToOne
     @JoinColumn(name = "ID_USUARIO", insertable = false, updatable = false)

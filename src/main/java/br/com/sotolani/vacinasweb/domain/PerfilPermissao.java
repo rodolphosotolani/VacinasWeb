@@ -15,15 +15,17 @@ import javax.persistence.*;
 @Table(name = "TB_PERFIL_PERMISSAO")
 public class PerfilPermissao {
 
-    @EmbeddedId
-    private PerfilPermissaoPK pk = new PerfilPermissaoPK();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer idPerfilPermissao;
 
     @ManyToOne
-    @JoinColumn(name = "ID_PERFIL", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_PERFIL", nullable = false)
     private Perfil perfil;
 
     @ManyToOne
-    @JoinColumn(name = "ID_PERMISSAO", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_PERMISSAO", nullable = false)
     private Permissao permissao;
 
 }

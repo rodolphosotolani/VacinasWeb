@@ -25,7 +25,7 @@ public class Cidade implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idCidade;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -37,10 +37,5 @@ public class Cidade implements Serializable {
 
     @Column(name = "SIGLA", length = 5)
     private String sigla;
-
-    @Override
-    public String toString() {
-        return nome + " - " + estado.getSigla();
-    }
 
 }

@@ -27,12 +27,8 @@ public class EstoqueVacina implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idEstoqueVacina;
-
-    @ManyToOne
-    @JoinColumn(name = "ID_FORNECEDOR")
-    private Empresa fornecedor;
 
     @Column(name = "QUANTIDADE_ENTRADA")
     private Integer quantidadeEntrada;
@@ -43,6 +39,14 @@ public class EstoqueVacina implements Serializable {
     @Column(name = "QUANTIDADE_ATUAL")
     private Integer quantidadeAtual;
 
+    @Column(name = "OBSERVACAO")
+    private String observacao;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "DATA_CADASTRO", nullable = false,
+            updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Date dataCadastro;
+
     @OneToMany(mappedBy = "estoqueVacina")
     private List<LoteVacina> loteVacinaList;
 
@@ -51,9 +55,5 @@ public class EstoqueVacina implements Serializable {
 
     @OneToMany(mappedBy = "estoqueVacina")
     private List<SaidaEstoqueVacina> ListaSaidasEstoque;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATA_CADASTRO", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date dataCadastro;
 
 }

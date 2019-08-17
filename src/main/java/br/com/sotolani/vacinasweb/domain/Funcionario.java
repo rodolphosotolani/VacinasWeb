@@ -42,9 +42,4 @@ public class Funcionario extends Pessoa implements Serializable {
     @OneToMany(mappedBy = "funcionario")
     private List<Usuario> listaUsuarios;
 
-    @Override
-    public String toString() {
-        return this.getMatricula() + " - " + this.getNome();
-    }
-
 }

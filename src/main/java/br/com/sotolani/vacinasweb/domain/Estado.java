@@ -25,7 +25,7 @@ public class Estado implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idEstado;
 
     @Column(name = "NOME", length = 50, nullable = false)
@@ -33,10 +33,5 @@ public class Estado implements Serializable {
 
     @Column(name = "SIGLA", length = 3, nullable = false)
     private String sigla;
-
-    @Override
-    public String toString() {
-        return sigla + " - " + nome;
-    }
 
 }

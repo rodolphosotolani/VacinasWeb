@@ -26,7 +26,7 @@ public class Empresa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "ID", nullable = false)
     private Integer idEmpresa;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -65,10 +65,5 @@ public class Empresa implements Serializable {
 
     @OneToMany(mappedBy = "fabricante", cascade = CascadeType.ALL)
     private List<FabricanteVacina> fabricanteVacinaList;
-
-    @Override
-    public String toString() {
-        return nomeFantasia + " - " + razaoSocial + " - " + CNPJ;
-    }
 
 }
