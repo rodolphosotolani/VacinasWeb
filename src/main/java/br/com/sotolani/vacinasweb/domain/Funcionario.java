@@ -21,7 +21,6 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_FUNCIONARIO")
-//@PrimaryKeyJoinColumn(name = "idFuncionario")
 public class Funcionario extends Pessoa implements Serializable {
 
     @ManyToOne(optional = false)

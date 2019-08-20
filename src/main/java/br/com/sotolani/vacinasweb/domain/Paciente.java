@@ -20,7 +20,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_PACIENTE")
-//@PrimaryKeyJoinColumn(name = "idPaciente")
 public class Paciente extends Pessoa implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
